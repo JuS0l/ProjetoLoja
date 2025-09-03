@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace LojaProdutosAsp.Models
+namespace ProjetoLoja.Models
 {
     public class Produto
     {
