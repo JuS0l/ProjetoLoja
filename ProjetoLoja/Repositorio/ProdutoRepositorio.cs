@@ -1,25 +1,35 @@
 ﻿using MySql.Data.MySqlClient;
 using ProjetoLoja.Models;
 using Dapper;
+using Newtonsoft.Json;
+
 
 namespace ProjetoLoja.Repositorio
 {
-
-    public class ProdutoRepositorio
+   public class ProdutoRepositorio
     {
-        //verificando a string de conexão do appsettings.json
         private readonly string _connectionString;
 
         public ProdutoRepositorio(string connectionString)
         {
             _connectionString = connectionString;
         }
-        //Criando um método e fazendo a sincronização com o banco de dados
+
         public async Task<IEnumerable<Produto>> TodosProdutos()
         {
             using var connection = new MySqlConnection(_connectionString);
-            var sql = "SELECT Id, Nome, Descricao, Preco, ImageUrl, Estoque FROM Produto";
+            var sql = "SELECT Id, Nome, Descricao, Preco, ImageUrl, Estoque FROM produtos";
             return await connection.QueryAsync<Produto>(sql);
         }
+        
+         
+        public async Task<Produto?> ProdutosPorId(int id)
+        {
+            using var connection = new MySqlConnection(_connectionString);
+            var sql = "SELECT Id, Nome, Descricao, Preco, ImageUrl, Estoque FROM produtos WHERE Id = @Id";
+            return await connection.QueryFirstOrDefaultAsync<Produto>(sql, new { Id = id });
+        }
+         
+
     }
 }
