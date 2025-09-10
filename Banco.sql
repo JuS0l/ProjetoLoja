@@ -1,5 +1,7 @@
 create database EcomLoja1;
 
+/*drop database EcomLoja1;*/
+
 use EcomLoja1;
 
 create table produto(
@@ -32,3 +34,8 @@ PrecoUnitario decimal (10,2)
 select * from produto;
 select * from pedido;
 select * from ItemPedido;
+
+insert into produto(Nome,Descricao,Preco,ImageUrl,Estoque)values('Jogo1','Descricao Jogo-1',150.00, 'images/jogo1.jpg',10);
+insert into produto(Nome,Descricao,Preco,ImageUrl,Estoque)values('Luva de Pedreiro','Descricao Jogo-3',1.00, 'images/jogo3.jpg',10);
+
+select * from produto;
