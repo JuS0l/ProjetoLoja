@@ -11,12 +11,12 @@ namespace ProjetoLoja.Controllers
         public CarrinhoController(CarrinhoRepositorio carrinhoRepositorio, ProdutoRepositorio produtoRepositorio)
         {
             _carrinhoRepositorio = carrinhoRepositorio;
-            _produtoRepositorio = produtoRepositorio;   
+            _produtoRepositorio = produtoRepositorio;
         }
         public async Task<IActionResult> Index()
         {
-            var carItems = _carrinhoRepositorio.CarrinhoItems(HttpContext.Session);
-            //Iterar sobre os itens do carrinho e buscar os detalhes do produto
+            var cartItems = _carrinhoRepositorio.CarrinhoItems(HttpContext.Session);
+            // Iterar sobre os itens do carrinho e buscar os detalhes do produto
             foreach (var item in cartItems)
             {
                 // Certifique-se de que _productRepository está retornando um Product ou null
@@ -68,6 +68,6 @@ namespace ProjetoLoja.Controllers
             _carrinhoRepositorio.LimparCarrinho(HttpContext.Session);
             return RedirectToAction("Index");
         }
-    }
+
     }
 }

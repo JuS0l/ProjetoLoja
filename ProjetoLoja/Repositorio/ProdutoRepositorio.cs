@@ -1,7 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using ProjetoLoja.Models;
 using Dapper;
-using Newtonsoft.Json;
 
 
 namespace ProjetoLoja.Repositorio
@@ -18,7 +17,7 @@ namespace ProjetoLoja.Repositorio
         public async Task<IEnumerable<Produto>> TodosProdutos()
         {
             using var connection = new MySqlConnection(_connectionString);
-            var sql = "SELECT Id, Nome, Descricao, Preco, ImageUrl, Estoque FROM produtos";
+            var sql = "SELECT Id, Nome, Descricao, Preco, ImageUrl, Estoque FROM produto";
             return await connection.QueryAsync<Produto>(sql);
         }
         
@@ -26,7 +25,7 @@ namespace ProjetoLoja.Repositorio
         public async Task<Produto?> ProdutosPorId(int id)
         {
             using var connection = new MySqlConnection(_connectionString);
-            var sql = "SELECT Id, Nome, Descricao, Preco, ImageUrl, Estoque FROM produtos WHERE Id = @Id";
+            var sql = "SELECT Id, Nome, Descricao, Preco, ImageUrl, Estoque FROM produto WHERE Id = @Id";
             return await connection.QueryFirstOrDefaultAsync<Produto>(sql, new { Id = id });
         }
          
